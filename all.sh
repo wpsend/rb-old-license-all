@@ -1,50 +1,53 @@
 #!/bin/bash
 
-# Function to run a license command and check its success
-run_command() {
-  echo "Running: $1"
-  eval "$1"
-  if [ $? -ne 0 ]; then
-    echo "Error: Command failed - $1"
-    exit 1
-  fi
-}
+# Start the script
+echo "Starting the installation process..."
 
-# cPanel License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) cPanel"
-run_command "RcLicenseCP"
-run_command "RcLicenseCP -fleetssl"
-run_command "RcLicenseCP -install-ssl-service"
-run_command "/usr/local/cpanel/scripts/install_lets_encrypt_autossl_provider"
-run_command "touch /etc/.verifylicense"
-run_command "RcLicenseCP"
+# cPanel Installation
+echo "Running cPanel installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) cPanel
+RcLicenseCP
+RcLicenseCP -fix
+RcLicenseCP -fix
+RcLicenseCP -fleetssl
+RcLicenseCP -install-ssl-service
+/usr/local/cpanel/scripts/install_lets_encrypt_autossl_provider
+touch /etc/.verifylicense
+RcLicenseCP
 
-# LiteSpeed License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) liteSpeed"
-run_command "RcLicenseLSWS"
+# LiteSpeed Installation
+echo "Running LiteSpeed installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) liteSpeed
+RcLicenseLSWS
 
-# CloudLinux License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) CloudLinux"
-run_command "RcLicenseCLN"
+# CloudLinux Installation
+echo "Running CloudLinux installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) CloudLinux
+RcLicenseCLN
 
-# Imunify360 License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Imunify360"
-run_command "RcLicenseImunify360"
+# Imunify360 Installation
+echo "Running Imunify360 installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Imunify360
+RcLicenseImunify360
 
-# Softaculous License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Softaculous"
-run_command "RcLicenseSoftaculous"
+# Softaculous Installation
+echo "Running Softaculous installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Softaculous
+RcLicenseSoftaculous
 
-# SitePad License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Sitepad"
-run_command "RcLicenseSitepad"
+# Sitepad Installation
+echo "Running Sitepad installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) Sitepad
+RcLicenseSitepad
 
-# JetBackup License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) JetBackup"
-run_command "RcLicenseJetBackup"
+# JetBackup Installation
+echo "Running JetBackup installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) JetBackup
+RcLicenseJetBackup
 
-# WHMReseller License Install
-run_command "bash <(curl -s https://mirror.resellercenter.ir/pre.sh) WHMReseller"
-run_command "RcLicenseWHMReseller"
+# WHMReseller Installation
+echo "Running WHMReseller installation..."
+bash <(curl -s https://mirror.resellercenter.ir/pre.sh) WHMReseller
+RcLicenseWHMReseller
 
-echo "All tasks completed successfully."
+echo "All installations have been completed successfully!"
